@@ -12,7 +12,7 @@ const createProductController = async (req: Request, res: Response) => {
         // send validate product data.
         const createdProduct = await ProductService.createProductDB(validateProduct);
 
-
+  
         res.status(200).json({
             success: true,
             message: "Product added successfully",
@@ -25,15 +25,34 @@ const createProductController = async (req: Request, res: Response) => {
     } catch (error: any) {
         res.status(500).json({
             success: false,
-            message:  error || "Something error"
+            message: error || "Something error"
 
         })
     }
 }
 
 
+const getAllProductController = async (req:Request,res:Response)=>{
+
+try {
+    const allitem = await ProductService.getAllProductfromDB()
+   
+    res.status(200).json({allitem})
+
+} catch (error) {
+    res.status(500).json({
+        success: false,
+        message: error || "Something error"
+
+    })
+
+}
+
+
+}
+
 
 
 export const ProductController = {
-    createProductController
+    createProductController, getAllProductController
 }

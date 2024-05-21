@@ -18,6 +18,16 @@ const createProductDB = async (products: ProductInterface) => {
 }
 
 
+const getAllProductfromDB = async()=>{
+
+    const items = await  ProductModel.find()
+    return items
+}
+
+
+
+
 export const ProductService = {
-    createProductDB
+    createProductDB,
+    getAllProductfromDB
 }
