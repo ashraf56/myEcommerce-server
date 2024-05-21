@@ -7,8 +7,9 @@ const createProductController = async (req: Request, res: Response) => {
 
     try {
         const product = req.body;
+        // Zod validation
         const validateProduct = ProductValidationSchema.parse(product);
-
+        // send validate product data.
         const createdProduct = await ProductService.createProductDB(validateProduct);
 
 
