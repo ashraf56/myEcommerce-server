@@ -1,10 +1,9 @@
 
-export type Varients = [
-    {
+export interface Varients   {
         type: string,
         value: string
     }
-]
+
 
 
 export interface ProductInterface {
