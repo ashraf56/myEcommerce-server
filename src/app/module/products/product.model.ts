@@ -13,6 +13,7 @@ const ProductSchema = new Schema<ProductInterface>({
     description: { type: String, trim: true, required: true },
     price: { type: Number, required: true, trim: true },
     category: { type: String, trim: true, required: true },
+    tags:{type:[String],required:[true,'Tags are required here']},
     variants: [VarientsSchema],
     inventory: {
         quantity: { type: Number },
