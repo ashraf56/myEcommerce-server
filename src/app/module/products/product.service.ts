@@ -18,22 +18,30 @@ const createProductDB = async (products: ProductInterface) => {
 }
 
 
-const getAllProductfromDB = async()=>{
+const getAllProductfromDB = async () => {
 
-    const items = await  ProductModel.find()
+    const items = await ProductModel.find()
     return items
 }
 
-const deleteProductFromDB = async(id:string)=>{
+// Delete product
+const deleteProductFromDB = async (id: string) => {
 
-    const item  = await ProductModel.findByIdAndDelete(id)
+    const item = await ProductModel.findByIdAndDelete(id)
 
-    return item 
+    return item
+
+}
+const FindSingleProductFromDB = async (id: string) => {
+
+    const singleitem = await ProductModel.findById(id)
+
+    return singleitem
 
 }
 
 
 export const ProductService = {
     createProductDB,
-    getAllProductfromDB , deleteProductFromDB
+    getAllProductfromDB, deleteProductFromDB, FindSingleProductFromDB
 }

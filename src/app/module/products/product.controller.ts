@@ -12,7 +12,7 @@ const createProductController = async (req: Request, res: Response) => {
         // send validate product data.
         const createdProduct = await ProductService.createProductDB(validateProduct);
 
-  
+
         res.status(200).json({
             success: true,
             message: "Product added successfully",
@@ -25,56 +25,82 @@ const createProductController = async (req: Request, res: Response) => {
     } catch (error: any) {
         res.status(500).json({
             success: false,
-            message: error || "Something error"
+            message: error || error.message || "Something error"
 
         })
     }
 }
 
 
-const getAllProductController = async (req:Request,res:Response)=>{
+const getAllProductController = async (req: Request, res: Response) => {
 
-try {
-    const allitem = await ProductService.getAllProductfromDB()
-   
-    res.status(200).json({allitem})
+    try {
+        const allitem = await ProductService.getAllProductfromDB()
 
-} catch (error) {
-    res.status(500).json({
-        success: false,
-        message: error || "Something error"
+        res.status(200).json({ allitem })
 
-    })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error || "Something error"
+
+        })
+
+    }
+
+
+}
+const deleteProductController = async (req: Request, res: Response) => {
+
+    try {
+        const { id } = req.params
+        const product = await ProductService.deleteProductFromDB(id)
+
+        res.status(200).json({
+            success: true,
+            message: "Product deleted successfully",
+            data: product
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error || "Something error"
+
+        })
+    }
+
 
 }
 
 
-}
-const deleteProductController = async (req:Request, res:Response)=> {
+const singlePRoductController = async (req: Request, res: Response) => {
 
-try {
-    const {id} = req.params
-     const product = await ProductService.deleteProductFromDB(id)
+    try {
 
-     res.status(200).json({
-        success: true,
-        message: "Product deleted successfully",
-        data: product
-    })
+        const { id } = req.params
+        const singleProduuct = await ProductService.FindSingleProductFromDB(id)
 
+        res.status(200).json({
+            success: true,
+            message: "Product fetched successfully!",
+            data: singleProduuct
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error || "Something error"
 
-} catch (error) {
-     res.status(500).json({
-        success: false,
-        message: error || "Something error"
-
-    })
-}
-
+        })
+    }
 
 }
+
+
+
 
 
 export const ProductController = {
-    createProductController, getAllProductController,deleteProductController
+    createProductController, getAllProductController, deleteProductController, singlePRoductController
 }
