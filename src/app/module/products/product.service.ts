@@ -41,7 +41,36 @@ const FindSingleProductFromDB = async (id: string) => {
 }
 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const updatePRoductfromDB = async (id: string, updatedata: any) => {
+
+    const item = await ProductModel.updateOne(
+        { _id: id },
+        {
+            $set: {
+                name: updatedata.name,
+                description: updatedata.description,
+                price: updatedata.price,
+                category: updatedata.category
+            },
+            $addToSet: {
+                tags: {
+                    $each: [updatedata.tags]
+                },
+                variants: {
+                    $each: [updatedata.variants]
+                }
+            }
+        }
+    )
+    return item
+}
+
+
+
+
 export const ProductService = {
     createProductDB,
-    getAllProductfromDB, deleteProductFromDB, FindSingleProductFromDB
+    getAllProductfromDB, deleteProductFromDB, FindSingleProductFromDB,
+    updatePRoductfromDB
 }

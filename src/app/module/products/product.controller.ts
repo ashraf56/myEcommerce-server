@@ -98,9 +98,33 @@ const singlePRoductController = async (req: Request, res: Response) => {
 }
 
 
+const updateProductController = async (req:Request,res:Response)=>{
 
+try {
+    
+const {id} = req.params;
+const updatedata =  req.body;
+const  result = await ProductService.updatePRoductfromDB(id,updatedata)
+
+res.status(200).json({
+    success: true,
+    message: "Product updated successfully!",
+    data: result
+})
+
+} catch (error) {
+    res.status(500).json({
+        success: false,
+        message:    error || "Something error"
+
+    })
+}
+
+
+}
 
 
 export const ProductController = {
     createProductController, getAllProductController, deleteProductController, singlePRoductController
+    , updateProductController
 }
