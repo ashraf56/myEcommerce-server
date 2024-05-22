@@ -9,6 +9,7 @@ const VarientsSchema = new Schema({
     { _id: false })
     
 const ProductSchema = new Schema<ProductInterface>({
+   
     name: { type: String, trim: true, required: true, unique: true },
     description: { type: String, trim: true, required: true },
     price: { type: Number, required: true, trim: true },

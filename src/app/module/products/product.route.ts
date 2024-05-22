@@ -7,6 +7,7 @@ const router = express.Router()
 // products CRUD 
 router.post('/createproduct', ProductController.createProductController)
 router.get('/',ProductController.getAllProductController)
+router.delete('/:id',ProductController.deleteProductController)
 
 
 export const ProductRouter = router;

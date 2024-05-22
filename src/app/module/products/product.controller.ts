@@ -50,9 +50,31 @@ try {
 
 
 }
+const deleteProductController = async (req:Request, res:Response)=> {
 
+try {
+    const {id} = req.params
+     const product = await ProductService.deleteProductFromDB(id)
+
+     res.status(200).json({
+        success: true,
+        message: "Product deleted successfully",
+        data: product
+    })
+
+
+} catch (error) {
+     res.status(500).json({
+        success: false,
+        message: error || "Something error"
+
+    })
+}
+
+
+}
 
 
 export const ProductController = {
-    createProductController, getAllProductController
+    createProductController, getAllProductController,deleteProductController
 }
