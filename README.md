@@ -16,7 +16,6 @@ https://github.com/ashraf56/myEcommerce-server.git
 
 ``` 
 npm i
-
 ```
 
 
@@ -25,5 +24,14 @@ npm i
 ```
 DATABASE_URL= set here your mongodb database url
 PORT= set your port
+```
 
+* Run tsc -w in the terminal
+```
+tsc -w
+```
+
+* Run server on local  
+```
+nodemon ./dist/index.js
 ```
