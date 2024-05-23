@@ -32,7 +32,7 @@ const createProductController = (req, res) => __awaiter(void 0, void 0, void 0, 
     catch (error) {
         res.status(500).json({
             success: false,
-            message: error || error.message || "Something error"
+            message: error.message || "Something error"
         });
     }
 });

@@ -7,11 +7,11 @@ const createProductDB = async (products: ProductInterface) => {
     const existingItem = await ProductModel.findOne({ name: products.name })
     if (existingItem) {
         throw new Error('product already exist')
-    } else {
-        const item = await ProductModel.create(products);
-
-        return item
     }
+    const item = await ProductModel.create(products);
+
+    return item
+
 
 
 

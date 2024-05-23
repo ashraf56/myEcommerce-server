@@ -20,10 +20,8 @@ const createProductDB = (products) => __awaiter(void 0, void 0, void 0, function
     if (existingItem) {
         throw new Error('product already exist');
     }
-    else {
-        const item = yield product_model_1.default.create(products);
-        return item;
-    }
+    const item = yield product_model_1.default.create(products);
+    return item;
 });
 const getAllProductfromDB = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
     //set query for search text 
