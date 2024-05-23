@@ -1,10 +1,10 @@
 
-export interface OrderInterface  {
+export interface OrderInterface {
 
-email:string,
-productId:string;
-price:number;
-quantity:number;
+    email: string,
+    productId: string;
+    price: number;
+    quantity: number;
 
 
 }
