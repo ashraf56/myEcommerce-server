@@ -4,9 +4,9 @@ import OrderModel from "./order.model";
 
 
 const createOrderDB = async (order: OrderInterface) => {
-    // find product 
+   
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const product: any = await ProductModel.findById(order.productId)
+    const product: any = await ProductModel.findById(order.productId) // find product 
 
     const productQuantity = product?.inventory.quantity;
     const orderQuantity = order?.quantity

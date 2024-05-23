@@ -16,9 +16,8 @@ exports.OrderService = void 0;
 const product_model_1 = __importDefault(require("../products/product.model"));
 const order_model_1 = __importDefault(require("./order.model"));
 const createOrderDB = (order) => __awaiter(void 0, void 0, void 0, function* () {
-    // find product 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const product = yield product_model_1.default.findById(order.productId);
+    const product = yield product_model_1.default.findById(order.productId); // find product 
     const productQuantity = product === null || product === void 0 ? void 0 : product.inventory.quantity;
     const orderQuantity = order === null || order === void 0 ? void 0 : order.quantity;
     // if  productQuantity is less then orderQuantity then it will throw a error message
