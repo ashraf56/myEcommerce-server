@@ -7,7 +7,7 @@ const createOrderController = async (req: Request, res: Response) => {
 
     try {
         const orders = req.body;
-       
+
         // send validate product data.
         const makeOrder = await OrderService.createOrderDB(orders)
 
@@ -24,7 +24,7 @@ const createOrderController = async (req: Request, res: Response) => {
     } catch (error: any) {
         res.status(500).json({
             success: false,
-            message: error || error.message || "Something error"
+            message: error.message || "Something error"
 
         })
     }

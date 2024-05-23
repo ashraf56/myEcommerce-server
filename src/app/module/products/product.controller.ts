@@ -38,7 +38,10 @@ const getAllProductController = async (req: Request, res: Response) => {
         const searchTerm = req.query.searchTerm  as string | null ;
         const allitem = await ProductService.getAllProductfromDB(searchTerm)
 
-        res.status(200).json({ allitem })
+        res.status(200).json({
+            success:true,
+           data: allitem
+         })
 
     } catch (error) {
         res.status(500).json({

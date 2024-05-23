@@ -1,17 +1,22 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
 import { ProductRouter } from './app/module/products/product.route'
+import { Orderrouter } from './app/module/order/order.route'
 
 
 const app = express()
 app.use(cors())
 app.use(express.json())
-//
-app.use('/api/products',ProductRouter)
+//Product Crud
+app.use('/api/products', ProductRouter)
 
-app.get('/', (req:Request,res:Response)=>{
+//Order
 
-res.send('e commerce server')
+app.use('/api/orders', Orderrouter)
+
+app.get('/', (req: Request, res: Response) => {
+
+    res.send('e commerce server')
 
 })
 
