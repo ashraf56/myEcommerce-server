@@ -35,13 +35,15 @@ const createProductController = async (req: Request, res: Response) => {
 const getAllProductController = async (req: Request, res: Response) => {
 
     try {
-        const searchTerm = req.query.searchTerm  as string | null ;
+        const searchTerm = req.query.searchTerm as string | null;
+        
         const allitem = await ProductService.getAllProductfromDB(searchTerm)
 
         res.status(200).json({
-            success:true,
-           data: allitem
-         })
+            success: true,
+            message: searchTerm ? `Products matching search term ${searchTerm} fetched successfully!` : "Product fetched successfully!",
+            data: allitem
+        })
 
     } catch (error) {
         res.status(500).json({
@@ -102,30 +104,30 @@ const singlePRoductController = async (req: Request, res: Response) => {
 }
 
 
-const updateProductController = async (req:Request,res:Response)=>{
+const updateProductController = async (req: Request, res: Response) => {
 
-try {
-    
-const {id} = req.params;
-const updatedata =  req.body;
+    try {
+
+        const { id } = req.params;
+        const updatedata = req.body;
 
 
 
-const  result = await ProductService.updatePRoductfromDB(id,updatedata)
+        const result = await ProductService.updatePRoductfromDB(id, updatedata)
 
-res.status(200).json({
-    success: true,
-    message: "Product updated successfully!",
-    data: result
-})
+        res.status(200).json({
+            success: true,
+            message: "Product updated successfully!",
+            data: result
+        })
 
-} catch (error) {
-    res.status(500).json({
-        success: false,
-        message:    error || "Something error"
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error || "Something error"
 
-    })
-}
+        })
+    }
 
 
 }
