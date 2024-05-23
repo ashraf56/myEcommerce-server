@@ -32,6 +32,29 @@ const createOrderController = async (req: Request, res: Response) => {
 
 
 
+const getAllorderController = async (req:Request, res:Response)=> {
+try {
+    const orderdata= await OrderService.getAllorder()
+
+    res.status(200).json({
+        success:true,
+        message:"Orders fetched successfully!",
+        data: orderdata
+
+    })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+} catch (error:any) {
+    res.status(500).json({
+        success: false,
+        message: error.message || "Something error"
+
+    })
+}
+
+
+}
+
+
 export const OrderControllers = {
-    createOrderController
+    createOrderController,getAllorderController
 }

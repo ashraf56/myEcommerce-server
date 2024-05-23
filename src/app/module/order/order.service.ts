@@ -37,7 +37,15 @@ const createOrderDB = async (order: OrderInterface) => {
 }
 
 
+const getAllorder = async () => {
+ 
+    const allorder = await OrderModel.find()
+return allorder
+}
+
+
+
 
 export const OrderService = {
-    createOrderDB
+    createOrderDB,getAllorder
 }
