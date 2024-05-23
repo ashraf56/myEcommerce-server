@@ -18,9 +18,23 @@ const createProductDB = async (products: ProductInterface) => {
 }
 
 
-const getAllProductfromDB = async () => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getAllProductfromDB = async (searchTerm: string | null) => {
+    let query = {}
+    if (searchTerm) {
+        query = {
 
-    const items = await ProductModel.find()
+            $text: {
+                $search: searchTerm
+            }
+
+
+        };
+
+    }
+
+
+    const items = await ProductModel.find(query)
     return items
 }
 
@@ -44,26 +58,27 @@ const FindSingleProductFromDB = async (id: string) => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const updatePRoductfromDB = async (id: string, updatedata: any) => {
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const query: any = {
+        $set: {
+            name: updatedata.name,
+            description: updatedata.description,
+            price: updatedata.price,
+            category: updatedata.category
+        }
+    }
+
     const item = await ProductModel.updateOne(
         { _id: id },
-        {
-            $set: {
-                name: updatedata.name,
-                description: updatedata.description,
-                price: updatedata.price,
-                category: updatedata.category
-            },
-            $addToSet: {
-                tags: {
-                    $each: [updatedata.tags]
-                },
-                variants: {
-                    $each: [updatedata.variants]
-                }
-            }
-        }
+        query,
+        { upsert: true }
+
+
     )
+
     return item
+
+
 }
 
 

@@ -15,7 +15,7 @@ const createProductController = async (req: Request, res: Response) => {
 
         res.status(200).json({
             success: true,
-            message: "Product added successfully",
+            message: "Product created successfully!",
             data: createdProduct
         })
 
@@ -35,7 +35,8 @@ const createProductController = async (req: Request, res: Response) => {
 const getAllProductController = async (req: Request, res: Response) => {
 
     try {
-        const allitem = await ProductService.getAllProductfromDB()
+        const searchTerm = req.query.searchTerm  as string | null ;
+        const allitem = await ProductService.getAllProductfromDB(searchTerm)
 
         res.status(200).json({ allitem })
 
@@ -104,6 +105,9 @@ try {
     
 const {id} = req.params;
 const updatedata =  req.body;
+
+console.log(updatedata);
+
 const  result = await ProductService.updatePRoductfromDB(id,updatedata)
 
 res.status(200).json({
