@@ -1,7 +1,7 @@
 # E-commerce server
 
 
-# Instalation 
+# Installation 
 
 - If you want to run this code into your local  then follow the instruction.
 
