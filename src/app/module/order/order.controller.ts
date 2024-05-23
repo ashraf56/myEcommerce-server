@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { OrderService } from "./order.service";
+import OrderValidation from "./order.validation";
 
 
 
@@ -7,9 +8,11 @@ const createOrderController = async (req: Request, res: Response) => {
 
     try {
         const orders = req.body;
-
+// zod 
+        const validateOrder = OrderValidation.parse(orders) 
         // send validate product data.
-        const makeOrder = await OrderService.createOrderDB(orders)
+
+        const makeOrder = await OrderService.createOrderDB(validateOrder)
 
 
         res.status(200).json({
