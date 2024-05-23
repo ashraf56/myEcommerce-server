@@ -106,7 +106,7 @@ try {
 const {id} = req.params;
 const updatedata =  req.body;
 
-console.log(updatedata);
+
 
 const  result = await ProductService.updatePRoductfromDB(id,updatedata)
 
