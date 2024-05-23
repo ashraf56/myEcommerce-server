@@ -5,11 +5,8 @@ import OrderModel from "./order.model";
 
 const createOrderDB = async (order: OrderInterface) => {
     // find product 
-    const product = await ProductModel.findById(order.productId)
-    // checking product so that we can reduce error  
-    if (!product) {
-        throw new Error('product not found')
-    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const product: any = await ProductModel.findById(order.productId)
 
     const productQuantity = product?.inventory.quantity;
     const orderQuantity = order?.quantity
@@ -20,9 +17,7 @@ const createOrderDB = async (order: OrderInterface) => {
     }
 
     // it will reduce prduct quantity
-
     const Finalquantity = productQuantity - orderQuantity;
-
     //it will set current product quantity into finalQuantity
     product.inventory.quantity = Finalquantity
     if (Finalquantity === 0) {
@@ -36,19 +31,19 @@ const createOrderDB = async (order: OrderInterface) => {
 
 }
 
-
-const getAllorder = async (email:string) => {
-let  query={}
- if (email) {
-    query ={email:email}
- }
+const getAllorder = async (email: string) => {
+    let query = {}
+    if (email) {
+        query = { email: email }
+    }
+    
     const allorder = await OrderModel.find(query)
-return allorder
+    return allorder
 }
 
 
 
 
 export const OrderService = {
-    createOrderDB,getAllorder
+    createOrderDB, getAllorder
 }

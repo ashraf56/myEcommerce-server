@@ -36,12 +36,16 @@ const getAllProductController = async (req: Request, res: Response) => {
 
     try {
         const searchTerm = req.query.searchTerm as string | null;
-        
+
         const allitem = await ProductService.getAllProductfromDB(searchTerm)
+
 
         res.status(200).json({
             success: true,
-            message: searchTerm ? `Products matching search term ${searchTerm} fetched successfully!` : "Product fetched successfully!",
+            message: searchTerm && allitem.length === 0 ?
+                `No product match for ${searchTerm}`
+                : searchTerm ? `Products matching search term ${searchTerm} fetched successfully!`
+                    : "Product fetched successfully!",
             data: allitem
         })
 

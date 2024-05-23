@@ -13,7 +13,6 @@ const OrderSchema = new Schema<OrderInterface>({
 
 
 
-
 const OrderModel = model<OrderInterface>('Order', OrderSchema)
 
 export default OrderModel

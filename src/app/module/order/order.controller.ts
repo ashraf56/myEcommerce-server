@@ -36,13 +36,17 @@ const getAllorderController = async (req: Request, res: Response) => {
     try {
         const email = req.query.email as string;
         const orderdata = await OrderService.getAllorder(email)
-
+        // email is not match then
+        if (email && orderdata.length === 0) {
+            throw new Error('no order found')
+        }
         res.status(200).json({
             success: true,
             message: email ? "Orders fetched successfully for user email" : "Orders fetched successfully!",
             data: orderdata
 
         })
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         res.status(500).json({

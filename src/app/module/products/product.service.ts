@@ -18,7 +18,6 @@ const createProductDB = async (products: ProductInterface) => {
 }
 
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getAllProductfromDB = async (searchTerm: string | null) => {
     //set query for search text 
     let query = {}
