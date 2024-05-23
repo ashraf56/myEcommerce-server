@@ -8,8 +8,8 @@ const createOrderController = async (req: Request, res: Response) => {
 
     try {
         const orders = req.body;
-// zod 
-        const validateOrder = OrderValidation.parse(orders) 
+        // zod 
+        const validateOrder = OrderValidation.parse(orders)
         // send validate product data.
 
         const makeOrder = await OrderService.createOrderDB(validateOrder)
