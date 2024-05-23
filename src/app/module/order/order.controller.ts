@@ -36,7 +36,7 @@ const getAllorderController = async (req: Request, res: Response) => {
     try {
         const email = req.query.email as string;
         const orderdata = await OrderService.getAllorder(email)
-        // email is not match then
+        // email is not match with orderdata then
         if (email && orderdata.length === 0) {
             throw new Error('no order found')
         }
