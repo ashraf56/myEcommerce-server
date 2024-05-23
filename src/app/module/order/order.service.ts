@@ -37,9 +37,12 @@ const createOrderDB = async (order: OrderInterface) => {
 }
 
 
-const getAllorder = async () => {
- 
-    const allorder = await OrderModel.find()
+const getAllorder = async (email:string) => {
+let  query={}
+ if (email) {
+    query ={email:email}
+ }
+    const allorder = await OrderModel.find(query)
 return allorder
 }
 
